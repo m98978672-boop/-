@@ -1,0 +1,18 @@
+{
+  "entity.rodent_colonies.mouse": "Мышь",
+  "entity.rodent_colonies.rat": "Крыса",
+  "item.rodent_colonies.mouse_spawn_egg": "Яйцо призыва мыши (отладка)",
+  "item.rodent_colonies.rat_spawn_egg": "Яйцо призыва крысы (отладка)",
+  "subtitles.rodent_colonies.squeak": "Мышь пищит",
+  "subtitles.rodent_colonies.hurt": "Грызун ранен",
+  "subtitles.rodent_colonies.death": "Грызун погиб",
+  "subtitles.rodent_colonies.gnaw": "Грызун грызёт",
+  "subtitles.rodent_colonies.eat": "Грызун ест",
+  "subtitles.rodent_colonies.sniff": "Грызун принюхивается",
+  "subtitles.rodent_colonies.alarm": "Тревога в колонии",
+  "subtitles.rodent_colonies.fight": "Драка грызунов",
+  "subtitles.rodent_colonies.warcry": "Крысы идут в атаку",
+  "subtitles.rodent_colonies.dig": "Грызун роет",
+  "subtitles.rodent_colonies.rustle": "Грызун тащит груз",
+  "subtitles.rodent_colonies.warriorsqueak": "Мыши пищат в атаке"
+}
