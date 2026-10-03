@@ -3,8 +3,12 @@ name: Build Mod JAR
 on:
   push:
     branches: [ "**" ]
+    paths-ignore:
+      - "rodent_colonies-*.jar"
   pull_request:
     branches: [ "**" ]
+    paths-ignore:
+      - "rodent_colonies-*.jar"
   workflow_dispatch:
 
 permissions:
@@ -16,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -34,7 +40,7 @@ jobs:
           EXIT_CODE=$?
           cat gradle_build.log
           if [ $EXIT_CODE -ne 0 ]; then
-            MSG=$(grep -E "(error:|FAILURE:|What went wrong|> )" gradle_build.log | tail -n 35 | tr '\n' ' ' | sed 's/:/ /g')
+            MSG=$(grep -E "(error:|FAILURE:|What went wrong|> |\.java:)" gradle_build.log | tail -n 35 | tr '\n' ' ' | sed 's/:/ /g')
             echo "::error title=GradleBuildError::$MSG"
             exit $EXIT_CODE
           fi
@@ -49,18 +55,26 @@ jobs:
             !build/libs/*-dev.jar
           if-no-files-found: error
 
-      - name: Publish GitHub Release with JAR
+      - name: Commit JAR to repository & Publish GitHub Release
         if: github.event_name == 'push'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           JAR_FILE=$(ls build/libs/rodent_colonies-*.jar | grep -vE '(-sources|-dev)\.jar' | head -n 1)
           echo "Built JAR: $JAR_FILE"
+          cp "$JAR_FILE" ./rodent_colonies-0.1.0.jar
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f rodent_colonies-0.1.0.jar
+          if ! git diff --cached --quiet; then
+            git commit -m "Сборка готового файла мода rodent_colonies-0.1.0.jar"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
           if gh release view v0.1.0 >/dev/null 2>&1; then
             gh release upload v0.1.0 "$JAR_FILE" --clobber
           else
             gh release create v0.1.0 "$JAR_FILE" \
-              --target "${{ github.sha }}" \
+              --target "${{ github.ref_name }}" \
               --title "Rodent Colonies v0.1.0 (Fabric 1.20.1)" \
               --notes "Готовый скомпилированный файл мода **rodent_colonies-0.1.0.jar** для Minecraft 1.20.1 (Fabric). Скачайте файл ниже и положите его в папку \`mods\` вместе с Fabric API."
           fi
