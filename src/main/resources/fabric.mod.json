@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "rodent_colonies",
+  "version": "${version}",
+  "name": "Rodent Colonies",
+  "description": "Колонии мышей и крыс: добыча, размножение, норы, войны. Мир меняется, но не исчезает.",
+  "authors": ["zuza"],
+  "license": "MIT",
+  "icon": "assets/rodent_colonies/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.zuza.rodentcolonies.RodentColonies"],
+    "client": ["com.zuza.rodentcolonies.client.RodentColoniesClient"]
+  },
+  "mixins": [
+    "rodent_colonies.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}

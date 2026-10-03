@@ -1,0 +1,18 @@
+{
+  "entity.rodent_colonies.mouse": "Mouse",
+  "entity.rodent_colonies.rat": "Rat",
+  "item.rodent_colonies.mouse_spawn_egg": "Mouse Spawn Egg (Debug)",
+  "item.rodent_colonies.rat_spawn_egg": "Rat Spawn Egg (Debug)",
+  "subtitles.rodent_colonies.squeak": "Mouse squeaks",
+  "subtitles.rodent_colonies.hurt": "Rodent hurts",
+  "subtitles.rodent_colonies.death": "Rodent dies",
+  "subtitles.rodent_colonies.gnaw": "Rodent gnaws",
+  "subtitles.rodent_colonies.eat": "Rodent eats",
+  "subtitles.rodent_colonies.sniff": "Rodent sniffs",
+  "subtitles.rodent_colonies.alarm": "Colony alarm",
+  "subtitles.rodent_colonies.fight": "Rodents fight",
+  "subtitles.rodent_colonies.warcry": "Rats charge",
+  "subtitles.rodent_colonies.dig": "Rodent digs",
+  "subtitles.rodent_colonies.rustle": "Rodent carries",
+  "subtitles.rodent_colonies.warriorsqueak": "Mice squeal"
+}
