@@ -22,10 +22,11 @@ dependencies {
 }
 
 processResources {
-    inputs.property "version", project.version
+    def modVersion = project.version
+    inputs.property "version", modVersion
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "version": modVersion
     }
 }
 
@@ -42,7 +43,10 @@ java {
 }
 
 jar {
+    def archiveName = project.base.archivesName.get()
+    inputs.property "archiveName", archiveName
+
     from("LICENSE") {
-        rename { "${it}_${project.base.archivesName.get()}" }
+        rename { "${it}_${archiveName}" }
     }
 }
